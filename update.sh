@@ -11,6 +11,5 @@ if [ $? -eq 8 ]; then
 	echo  -e "For the first run, launch docker run with options :  -i -t -a "
 else 
 	echo -e "Launch server..."
-	trap 'echo "quit"' SIGTERM
 	/home/steam/projectzomboid/projectzomboid-dedi-server.sh -servername ${SERVERNAME}
 fi

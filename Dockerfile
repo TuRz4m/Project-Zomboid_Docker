@@ -46,5 +46,5 @@ EXPOSE 16261-16272
 # /home/steam/projectzomboid : Server files & exe
 VOLUME [ "/home/steam/Zomboid" , "/home/steam/projectzomboid" ]
 
-# Update game (with credential) && lauch the game.
+# Update game (with credential) && launch the game.
 ENTRYPOINT ["/home/steam/update.sh"]
