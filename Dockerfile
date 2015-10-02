@@ -2,10 +2,17 @@ FROM ubuntu:14.04
 
 MAINTAINER TuRzAm
 
-ENV USERNAME anonymous
-ENV PASSWORD ""
-ENV STEAMGUARDCODE ""
+# Server Name
 ENV SERVERNAME "servertest"
+# Admin DB Password (required for the first launch)
+ENV ADMINPASSWORD "adminpassword"
+# Rcon Password (used to quit the server)
+ENV RCON_PASSWORD "rconpassword"
+# Steam port
+ENV STEAMPORT1  8766
+ENV STEAMPORT2  8767
+# Game port
+ENV GAMEPORT   16261
 
 
 # Install dependencies 
@@ -22,11 +29,15 @@ RUN adduser \
 
 # Copy & rights to folders
 COPY update.sh /home/steam/update.sh
+COPY rcon /home/steam/rcon
 
 RUN chmod 777 /home/steam/update.sh
+RUN chmod 777 /home/steam/rcon
 RUN mkdir -p /home/steam/Zomboid && chown -R steam /home/steam/Zomboid
 RUN mkdir -p /home/steam/projectzomboid && chown -R steam /home/steam/projectzomboid
-
+# Create slink
+RUN ln -s /home/steam/projectzomboid /server-files && chown -R steam /server-files
+RUN ln -s /home/steam/Zomboid /server-data && chown -R steam /server-data
 
 USER steam 
 
@@ -40,11 +51,20 @@ RUN mkdir /home/steam/steamcmd &&\
 RUN /home/steam/steamcmd/steamcmd.sh +login anonymous +quit
 
 # Make server port available to host : (10 slots)
-EXPOSE 16261-16272
+# 8766,8767 : steamport
+# 16261 : server port : tcp
+# 27015 : Rcon port
+EXPOSE ${STEAMPORT1}
+EXPOSE ${STEAMPORT2}
+EXPOSE ${GAMEPORT}
+EXPOSE 27015
+
 
 # /home/steam/Zomboid : Server Data
 # /home/steam/projectzomboid : Server files & exe
-VOLUME [ "/home/steam/Zomboid" , "/home/steam/projectzomboid" ]
+#VOLUME [ "/home/steam/Zomboid" , "/home/steam/projectzomboid" ]
+VOLUME /server-files
+VOLUME /server-data
 
 # Update game (with credential) && launch the game.
 ENTRYPOINT ["/home/steam/update.sh"]
