@@ -18,8 +18,12 @@ ENV GAMEPORT   16261
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies 
-RUN apt-get update &&\ 
-    apt-get install -y curl lib32gcc1 default-jre 
+RUN apt-get update && apt-get install -y \
+	curl \
+	lib32gcc1 \
+	default-jre \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
 
 # Run commands as the steam user
