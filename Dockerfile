@@ -14,6 +14,8 @@ ENV STEAMPORT2  8767
 # Game port
 ENV GAMEPORT   16261
 
+# Stop apt-get asking to get Dialog frontend
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies 
 RUN apt-get update &&\ 
