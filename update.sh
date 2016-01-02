@@ -23,7 +23,7 @@ echo -e "Update project zomboid..."
 
 # Only change password is it doesn't exist
 INIFILE="/home/steam/Zomboid/Server/${SERVERNAME}.ini"
-sed -i -e s/RCONPassword=[[:space:]/RCONPassword=${RCON_PASSWORD}/ $INIFILE
+sed -i -e 's/RCONPassword=[[:space:]/RCONPassword=${RCON_PASSWORD}/' $INIFILE
 
 
 
