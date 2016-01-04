@@ -5,7 +5,7 @@ Docker build for project zomboid server.
 ## History
 
 v1.0: First version for non steam server [now broken]  
-v1.1: New version for Project Zomboid Steam dedicated server
+v1.1: New version for Project Zomboid Steam dedicated server  
 v1.2: Minor fixes (asking for frontend disabled, sed parse error removed)
 
 ## Usage
@@ -27,7 +27,7 @@ RCON Password (will be change in your ini file if there is no password set)
 Used to save when you stop the docker.
 
 ## Volumes
-+ __/server-data_
++ __/server-data__
 Data dir of the server. Contains db, config files...
 + __/server-files__
 Application dir of the server. Contains the mods directory.
