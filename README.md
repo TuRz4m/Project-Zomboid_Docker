@@ -5,7 +5,8 @@ Docker build for project zomboid server.
 ## History
 
 v1.0: First version for non steam server [now broken]  
-v1.1: New version for Project Zomboid Steam dedicated server
+v1.1: New version for Project Zomboid Steam dedicated server  
+v1.2: Minor fixes (asking for frontend disabled, sed parse error removed)  
 
 ## Usage
 `docker run -d -e SERVERNAME="MyServerName" -e ADMINPASSWORD="myadminpassword" -e RCON_PASSWORD="rconpassword"  -v /My/path/to/My/Config/and/data:/server-data -p 16261:16261 -p 16261:16261/udp -p 8766:8766 -p 8767:8767 -p 16262-16272:16262-16272 --name zomboid turzam/zomboid`
