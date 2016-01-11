@@ -14,16 +14,10 @@ ENV STEAMPORT2  8767
 # Game port
 ENV GAMEPORT   16261
 
-# Stop apt-get asking to get Dialog frontend
-ENV DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies 
-RUN apt-get update && apt-get install -y \
-	curl \
-	lib32gcc1 \
-	default-jre \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
+RUN apt-get update &&\ 
+    apt-get install -y curl lib32gcc1 default-jre 
 
 
 # Run commands as the steam user
